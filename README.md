@@ -20,3 +20,9 @@ ampy -b 115200 -p com7 -d 1 put .\zrh_web_server.py
 ampy -b 115200 -p com7 -d 1 put .\zrh_wifi_ap.py
 ampy -b 115200 -p com7 -d 1 put .\zrh_wifi.py
 ```
+
+### 配置wifi
+默认启动会开启AP模式，手机wifi找到ESP-AP连接，在浏览器里输入
+```
+http://192.168.4.1/setWifi?ssid=wifi&password=wifi密码
+```
