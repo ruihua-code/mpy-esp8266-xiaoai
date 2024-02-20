@@ -12,9 +12,8 @@ serverIP = const('bemfa.com')
 port = const(9501)
 client = None
 
+
 # 接收消息，并处理
-
-
 def MsgOK(topic, msg):          # 回调函数，用于收到消息
     print((topic, msg))             # 打印主题值和消息值
     if topic == woshideng_001_topic.encode():
