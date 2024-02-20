@@ -6,7 +6,7 @@ from umqtt.simple import MQTTClient
 
 
 clientID = const('11dd1fbc5cbe353fafdc955210933b87')
-woshideng_001_topic = const('woshideng001')
+leddeng_002_topic = const('leddeng002')
 woshideng_002_topic = const('woshideng002')
 serverIP = const('bemfa.com')
 port = const(9501)
@@ -16,7 +16,7 @@ client = None
 # 接收消息，并处理
 def MsgOK(topic, msg):          # 回调函数，用于收到消息
     print((topic, msg))             # 打印主题值和消息值
-    if topic == woshideng_001_topic.encode():
+    if topic == leddeng_002_topic.encode():
         if msg == b"on":
             print("开灯")
         elif msg == b"off":
@@ -34,7 +34,7 @@ def connect_and_subscribe():
     client.set_callback(MsgOK)
     client.connect()
     client.subscribe(woshideng_002_topic)
-    client.subscribe(woshideng_001_topic)
+    client.subscribe(leddeng_002_topic)
     print("Connected to %s" % serverIP)
     return client
 
