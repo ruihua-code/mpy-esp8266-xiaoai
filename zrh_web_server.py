@@ -16,7 +16,7 @@ def parse_query_string(query_string):
     return parsed_params
 
 
-def handle_request(client):
+def handle_request(client, ap):
     request = client.recv(4096).decode('utf-8')
     request_lines = request.split('\r\n')
 
@@ -37,6 +37,7 @@ def handle_request(client):
             client.send('配置成功，正在重启设备')
             client.close()
             time.sleep(3)
+            ap.active(False)
             machine.reset()
 
     else:
@@ -48,7 +49,7 @@ def handle_request(client):
 
 
 # 启动socket TCP Server
-def do_socket_start():
+def do_socket_start(ap):
     gc.collect()
     my_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     my_socket.bind(('0.0.0.0', 80))
@@ -56,5 +57,5 @@ def do_socket_start():
     while True:
         print("socket running...")
         client_socket, _ = my_socket.accept()
-        handle_request(client_socket)
+        handle_request(client_socket, ap)
         client_socket.close()

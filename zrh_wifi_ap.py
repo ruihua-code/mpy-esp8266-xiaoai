@@ -12,4 +12,4 @@ def init_ap():
     print('--- AP热点启动成功 ---')
     print(ap.ifconfig())
     print('--- AP web服务启动 ---')
-    do_socket_start()
+    do_socket_start(ap)
