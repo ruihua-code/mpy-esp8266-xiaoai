@@ -3,7 +3,7 @@ from micropython import const
 import machine
 from machine import Timer
 from umqtt.simple import MQTTClient
-
+from zrh_led import on_led, off_led
 
 clientID = const('11dd1fbc5cbe353fafdc955210933b87')
 leddeng_002_topic = const('leddeng002')
@@ -24,9 +24,10 @@ def MsgOK(topic, msg):          # 回调函数，用于收到消息
     if topic == woshideng_002_topic.encode():
         if msg == b"on":
             print("开灯2222")
+            on_led()
         elif msg == b"off":
             print("关灯222")
-
+            off_led()
 
 # 初始化mqtt连接配置
 def connect_and_subscribe():
